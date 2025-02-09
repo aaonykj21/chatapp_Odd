@@ -1,11 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Rooms" %>
 
 <div id='chatapp'>
 <div id='rooms'>
+<div class="sect">
+  <p> Rooms </p>
+</div>
 <div id='room-list'>
-<div class="room-form">
+<div class="CreateRoom">
 <%= render partial: 'form', locals: {room: Room.new(name:"Room #{Room.count + 1}")} %>
 </div>
 <div class="ConRoom">
