@@ -1,0 +1,40 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Rooms" %>
+
+<div id='chatapp'>
+<div id='rooms'>
+<div id='room-list'>
+<div class="room-form">
+<%= render partial: 'form', locals: {room: Room.new(name:"Room #{Room.count + 1}")} %>
+</div>
+<div class="ConRoom">
+<% @rooms.each do |room| %>
+<%= render room %>
+<% end %>
+</div>
+</div>
+
+<br>
+<%= button_to "Logout", session_path,method: :delete, class: "logout-btn" %>
+</div>
+
+
+<div id='messages'>
+<div class = "ConMessage">
+<%= turbo_frame_tag 'room-messages' do %>
+<div id='message-list'>
+<% @messages.each do |message| %>
+<%= render message %>
+<% end %>
+</div>
+</div>
+
+  <%= render partial: 'messages/form', locals: {message:Message.new(room: @room)} %>
+<% if @room %>
+  <%= turbo_stream_from @room %>
+
+<% end %>
+<% end %>
+</div>
+</div>

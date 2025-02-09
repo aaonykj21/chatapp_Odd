@@ -1,0 +1,483 @@
+html, body, #chatapp {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  #chatapp {
+      display: flex;
+      flex-direction: row;
+  }
+  
+  #rooms {
+    background: #ffffff;
+    width: 220px;
+    padding: 20px;
+    position: relative; /* ทำให้ปุ่ม logout ยึดตาม #rooms */
+    height: 100vh;
+  }
+  
+  #new-room-form {
+    padding: 15px;
+    background: #fce4ec;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .logout-btn {
+    background: #e57373;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+    width: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 60px; /* ระยะห่างจากขอบล่าง */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .logout-btn:hover {
+    background: #d32f2f;
+  }
+  #room-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    
+  }
+  #room-list .room {
+    padding: 10px;
+    border-bottom: 1px solid #f5c7c7;
+  }
+  
+  #room-list .room:last-child {
+    border-bottom: none; /* ไม่ให้มีเส้นที่ห้องสุดท้าย */
+  }
+  
+  
+  .room:hover {
+    background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังเมื่อโฮเวอร์ */
+  }
+  
+  #current-room-name {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px;
+    background: #ffebf1;
+    border-bottom: 2px solid #ffb6c1;
+    color: #d32f2f;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  
+  #messages {
+    background: linear-gradient(145deg, #fde2e4, #cce5ff);
+    flex-grow: 1;
+    padding: 20px;
+    /* border-radius: 12px; */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+    overflow-y: auto;
+  }
+  
+  #message-form {
+    position: fixed;
+    bottom: 0;
+    left: 270px; /* ขยับให้ชิดขวาหลังแถบ rooms */
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* ให้ลอยอยู่ด้านหน้า */
+  }
+  
+  #message-form input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 2px solid #ffb6c1;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  #message-form input[type="text"]:focus {
+    border-color: #ff87ab;
+    background: #fff0f5;
+  }
+  
+  #message-form input[type="submit"] {
+    background: #cd96f3;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  #message-form input[type="submit"]:hover {
+    background: #b47bd6;
+  }
+  
+  .flash-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    max-width: 300px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+    
+    .flash-alert {
+      background: #f7b2d9;
+      color: red;
+      border: none;
+      max-width: 300px;
+    }
+    
+    .flash-notice {
+      background: #f7b2d9;
+      color: red;
+      border: none;
+      max-width: 300px;
+    }
+  
+  .LoginContainer {
+      background: linear-gradient(145deg, #f7b2d9, #bad8f6);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 300px;
+      height: 400px;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .LoginContainer h1 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .MailAndPass {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .MailAndPass input {
+      padding: 12px;
+      border: 2px solid #f9c5d1;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+    
+    .MailAndPass input:focus {
+      border-color: #ef7fd1;
+      background: #ffebf1;
+    }
+    .MailAndPass input:not(:placeholder-shown) {
+      border-color: #ef7fd1; 
+      background: #ffebf1;   
+    }
+  
+    .MailAndPass input:-webkit-autofill {
+      background: #ffebf1 !important;  /* เปลี่ยนเป็นสีเขียวอ่อน */
+      border-color: #ef7fd1 !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    
+    .MailAndPass input:-webkit-autofill,
+  .MailAndPass input:-webkit-autofill:hover, 
+  .MailAndPass input:-webkit-autofill:focus, 
+  .MailAndPass input:-webkit-autofill:active {
+    background: #ffebf1!important;
+    border-color: #ef7fd1 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffebf1 inset;
+    box-shadow: 0 0 0px 1000px #ffebf1 inset;
+  }
+    input[type="submit"] {
+      background: #eb8ce6e3;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    input[type="submit"]:hover {
+      background: #e26ddc;
+    }
+    button {
+        background: #cd96f3be;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+   
+    
+    button:hover {
+      background: #c582f1fb;
+    }
+    
+    a {
+      display: block;
+      margin-top: 10px;
+      color: #6a5acd;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+  
+    /* Registration Container */
+  .RegisCss {
+    background: linear-gradient(145deg, #f7b2d9, #bad8f6);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Title */
+  .RegisCss h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 18px;
+  }
+  
+  /* Input Fields */
+  .RegisCss div {
+    margin-bottom: 10px;
+  }
+  
+  .RegisCss input {
+    width: 90%;
+    padding: 12px;
+    border: 2px solid #f9c5d1;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .RegisCss input:focus {
+    border-color: #ef7fd1;
+    background: #ffebf1;
+  }
+  
+  /* Submit Button */
+  .RegisCss input[type="submit"] {
+    background: #eb8ce6e3;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 25%;
+    margin-top: 10px;
+  }
+  
+  .RegisCss input[type="submit"]:hover {
+    background: #e26ddc;
+  }
+  
+  /* Back Button */
+  .RegisCss .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #cd96f3be;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: 0.3s;
+    width: 18%;
+    font-family: sans-serif;
+  }
+  
+  .RegisCss .btn:hover {
+    background: #c582f1fb;
+  }
+  
+  .delete-btn {
+    background: #e57373;
+    color: white;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .delete-btn:hover {
+    background: #d32f2f;
+  }
+ /* สไตล์สำหรับ Room Form */
+.room-form {
+    background: linear-gradient(145deg, #f7b2d9, #bad8f6); /* พื้นหลังพาสเทลชมพูและฟ้า */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+  
+  /* หัวข้อของฟอร์ม */
+  .room-form h2 {
+    color: #d32f2f; /* สีชมพูเข้ม */
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* การจัดรูปแบบให้ฟอร์ม */
+  .room-form input[type="text"] {
+    width: 85%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ffb6c1; /* สีขอบชมพูอ่อน */
+    border-radius: 8px;
+    background-color: #fef5f9; /* พื้นหลังชมพูอ่อน */
+    font-size: 1rem;
+    transition: 0.3s;
+  }
+  
+  /* เมื่อฟอร์มถูกคลิกหรือโฟกัส */
+  .room-form input[type="text"]:focus {
+    background-color: #fff0f5; /* สีพื้นหลังเมื่อโฟกัส */
+    border-color: #ff87ab; /* ขอบชมพูสด */
+  }
+  
+  /* ปุ่ม submit */
+  .room-form input[type="submit"] {
+    background: linear-gradient(145deg, #e26ddc, #cd96f3); /* ปุ่มพาสเทลชมพู-ฟ้า */
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  
+  /* เปลี่ยนสีเมื่อ hover */
+  .room-form input[type="submit"]:hover {
+    background: linear-gradient(145deg, #b47bd6, #a16dc1);
+  }
+  
+  .room-form .error {
+    color: #d32f2f; /* สีแดงสำหรับข้อความผิดพลาด */
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+
+  .DeleteMessage {
+    display: inline-block;  /* ให้ปุ่มอยู่ข้างข้อความ */
+    margin-left: 10px;  /* ให้ปุ่มห่างจากข้อความเล็กน้อย */
+  }
+
+  .DeleteMessage button{
+    background: #f25858; /* สีชมพูสด */
+  color: white;
+  font-size: 0.5rem; /* ขนาดฟอนต์เล็ก */
+  padding: 6px 12px; /* ระยะห่างภายใน */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none; /* ถ้าใช้เป็น link */
+  }
+  .DeleteMessage:hover button {
+    background: #ff4d4d; /* สีแดงเข้มขึ้น */
+    transform: scale(1.1); /* ขยายเล็กน้อยเมื่อ hover */
+  }
+  
+  /* สำหรับเมื่อปุ่ม disabled */
+  .DeleteMessage:disabled {
+    background: #f2a6a6; /* สีชมพูอ่อนสำหรับปุ่ม disabled */
+    cursor: not-allowed;
+  }
+
+  .message {
+    margin-bottom: 10px;
+    
+  }
+  .ConMessage {
+    max-height: 82vh;
+    overflow-y: auto;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
