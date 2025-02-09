@@ -463,6 +463,15 @@ html, body, #chatapp {
     max-height: 82vh;
     overflow-y: auto;
   }
+
+  .ShowMail{
+    display: inline-block;
+    color: green;
+  }
+
+  .ShowMessage{
+    display: inline-block;
+  }
   
   
   
