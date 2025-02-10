@@ -57,12 +57,11 @@ html, body, #chatapp {
   }
   #room-list .room {
     padding: 10px;
-    border-bottom: 1px solid #f5c7c7;
   }
   
   #room-list .room:last-child {
     border-bottom: none;
-    width: 200px;
+    width: 250px;
     text-align: center;
 }
   
@@ -488,30 +487,35 @@ html, body, #chatapp {
 }
 .CreateRoom{
     background: linear-gradient(145deg, #f7b2d9, #bad8f6); /* พื้นหลังพาสเทลชมพูและฟ้า */
-    padding: 20px;
+    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 0 auto;
+    margin: 10px;
     font-family: 'Poppins', sans-serif;
     text-align: center;
+    color : white;
+    
 }
 .CreateRoom h2 {
-    color: #d32f2f; /* สีชมพูเข้ม */
-    font-size: 1.8rem;
+   font-size: 1.8rem;
     text-align: center;
     margin-bottom: 20px;
+    color: white;
 }
 
 .CreateRoom input[type="text"] {
-    width: 85%;
+    width: 90%;
     padding: 12px;
-    margin: 8px 0;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: 2px solid #ffb6c1; /* สีขอบชมพูอ่อน */
     border-radius: 8px;
     background-color: #fef5f9; /* พื้นหลังชมพูอ่อน */
     font-size: 1rem;
     transition: 0.3s;
+    color: grey;
   }
 
   .CreateRoom input[type="text"]:focus {
@@ -522,12 +526,12 @@ html, body, #chatapp {
   /* ปุ่ม submit */
   .CreateRoom input[type="submit"] {
     background: linear-gradient(145deg, #e26ddccf, #cd96f3); /* ปุ่มพาสเทลชมพู-ฟ้า */
-    color: black;
+    color: white;
     font-size: 1.1rem;
     padding: 12px;
     border-radius: 8px;
     border: none;
-    width: 100%;
+    width: 101%;
     cursor: pointer;
     transition: 0.3s;
     margin-top: 5px;
