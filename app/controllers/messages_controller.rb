@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
       else
       @messages = []
       end
-     
   end
 
   # GET /messages/1 or /messages/1.json
