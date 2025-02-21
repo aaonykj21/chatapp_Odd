@@ -4,6 +4,7 @@ html, body, #chatapp {
     font-family: Arial, sans-serif;
     background: #f8f9fa;
     overflow: hidden;
+    background: linear-gradient(145deg, #fde2e4, #cce5ff);
   }
   
   #chatapp {
@@ -35,16 +36,16 @@ html, body, #chatapp {
     font-size: 1rem;
     text-align: center;
     display: block;
-    width: 80%;
+    max-width: 30%;
     border: none;
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 10px;
-    position: absolute;
-    bottom: 60px; /* ระยะห่างจากขอบล่าง */
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    position: fixed; /* ใช้ fixed แทน absolute */
+    bottom: 10px; /* ระยะห่างจากขอบล่าง */
+    left: 120px; /* ระยะห่างจากขอบซ้าย */
+}
+
   .logout-btn:hover {
     background: #d32f2f;
   }
@@ -58,6 +59,7 @@ html, body, #chatapp {
   }
   #room-list .room {
     padding: 10px;
+    margin-left: 10px;
   }
   
   #room-list .room:last-child {
@@ -92,7 +94,7 @@ html, body, #chatapp {
   #message-form {
     position: fixed;
     bottom: 0;
-    left: 350px; /* ขยับให้ชิดขวาหลังแถบ rooms */
+    left: 320px; /* ขยับให้ชิดขวาหลังแถบ rooms */
     right: 10px;
     bottom: 10px;
     display: flex;
@@ -470,7 +472,8 @@ html, body, #chatapp {
   }
 
   .message {
-    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
     
   }
   .ConMessage {
@@ -585,5 +588,22 @@ html, body, #chatapp {
     display: inline-block;
     text-align: center;
     text-decoration: none; /* ถ้าใช้เป็น link */
-    margin-left: 110px;
+    margin-left: 120px;
 }
+
+.rooms-header p {
+  text-align: center;
+  background-image: linear-gradient(145deg, #e26ddc, #cd96f3); /* ใช้ background-image สำหรับ gradient */
+  -webkit-background-clip: text; /* ให้ gradient คลุมตัวอักษร */
+  background-clip: text; /* ให้ gradient คลุมตัวอักษร */
+  font-size: 35px;
+  font-weight: bold;
+  color: transparent; /* ทำให้สีตัวอักษรโปร่งใสเพื่อให้เห็น gradient */
+}
+
+
+#rooms-container{
+  background-color: white;
+  padding: 10px;
+}
+

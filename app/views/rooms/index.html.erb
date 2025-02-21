@@ -1,41 +1,45 @@
+
+
 <% content_for :title, "Rooms" %>
 
-<div id='chatapp'>
-<div id='rooms'>
-<div class="sect">
-  <p> Rooms </p>
-</div>
-<div id='room-list'>
-<div class="CreateRoom">
-<%= render partial: 'form', locals: {room: Room.new(name:"Room #{Room.count + 1}")} %>
-</div>
-<div class="ConRoom">
-<% @rooms.each do |room| %>
-<%= render room %>
-<% end %>
-</div>
-</div>
+<div id="chatapp" >
+  <div id="rooms-container">
+    <div class="rooms-header">
+      <p>Rooms</p>
+    </div>
+    <div class = "CreateRoom">
+    <div id="room-form">
+      <%= render partial: 'form', locals: {room: Room.new(name:"Room #{Room.count + 1}")} %>
+    </div> 
+    </div>
+    <div id="room-list">
+      <% @rooms.each do |room| %>
+        <%= render room %>
+      <% end %>
+    </div>
+    <div id="logout-button">
+      <%= button_to "Logout", session_path, method: :delete, class: "logout-btn" %>
+    </div>
+  </div>
+  
+  <div id="messages-container">
+    
+    
+    <%= turbo_frame_tag 'room-messages' do %>
+      <div id="message-list">
+        <% @messages.each do |message| %>
+          <%= render message %>
+        <% end %>
+      </div>
 
-<br>
-<%= button_to "Logout", session_path,method: :delete, class: "logout-btn" %>
-</div>
-
-
-<div id='messages'>
-<div class = "ConMessage">
-<%= turbo_frame_tag 'room-messages' do %>
-<div id='message-list'>
-<% @messages.each do |message| %>
-<%= render message %>
-<% end %>
-</div>
-</div>
-
-  <%= render partial: 'messages/form', locals: {message:Message.new(room: @room)} %>
-<% if @room %>
-  <%= turbo_stream_from @room %>
-
-<% end %>
-<% end %>
-</div>
+      <div id="message-form">
+        <% if @room %>
+        <%= render partial: 'messages/form', locals: {message: Message.new(room: @room)} %>
+        <%= turbo_stream_from @room %>
+      <% end %>
+      </div>
+      
+    <% end %>
+     </div>
+  </div>
 </div>
