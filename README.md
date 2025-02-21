@@ -3,7 +3,7 @@
 โปรเจกต์นี้เป็นระบบห้องแชทที่พัฒนาโดยใช้ **Ruby on Rails** รองรับการสร้างห้องสนทนาและการส่งข้อความแบบเรียลไทม์
 
 ## Test Account
-* Email: natcha@natcha.com
+* Email: test@test.com
 * Password: 1234
 <br>
 สามารถ log-in ด้วย Email ได้เลยค่ะ
@@ -12,8 +12,8 @@
 ## Installation
 1. **Clone Repository**
    ```sh
-   git clone https://github.com/aaonykj21/chatapp.git
-   cd chatapp_2
+   git clone https://github.com/aaonykj21/chatapp_Odd.git
+   cd chatapp_Odd
    ```
 
 2. **Install Dependencies**
